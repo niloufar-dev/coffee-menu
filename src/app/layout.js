@@ -1,14 +1,16 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display, Lato } from "next/font/google";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const lato = Lato({
+  variable: "--font-lato",
   subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata = {
@@ -20,9 +22,11 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${playfair.variable} ${lato.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+      </body>
     </html>
   );
 }
